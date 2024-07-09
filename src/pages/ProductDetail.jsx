@@ -34,13 +34,16 @@ const ProductDetail = () =>{
     }, []);
 
     const item = state.items.find((item) => item.id === parseInt(id));
+
+    console.log(item);
+
   
     return(
         <>
             <Header />
             {state.status === "loading" ? <Loading /> : (
                 <Container>
-                    <RenderImage item={item} style={`image-size-${"medium"}`} />
+                    <RenderImage item={item} style={`image-size-${"large"}`} />
                     <Wrapper>
                         <h1>{item.title}</h1>
                         <p>${item.price.toFixed(2)}</p>

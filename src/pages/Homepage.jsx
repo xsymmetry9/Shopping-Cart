@@ -78,15 +78,15 @@ const Homepage = (props) =>{
                 <Heading>Our Collection</Heading>
                 <Paragraph>Beautifully Designed. Carefully made for you.</Paragraph>
                 <CTAWrapper>
-                    <Link to="/store" ><Button>Explore more</Button></Link>
+                    <Link to="/store"><Button>Explore more</Button></Link>
                 </CTAWrapper>
             </Wrapper>
         </Banner>
         <Section>
-            <Collection items = {men} status = {status} style={"big"} />
+            <Collection items = {men} status = {status} style={"medium"} />
         </Section>
         <Section>
-            <Collection items = {women} status = {status} style ={"big"} />
+            <Collection items = {women} status = {status} style ={"medium"} />
         </Section>
         <Section>
             <Collection items = {jewelery} status = {status} style ={"medium"}/>
