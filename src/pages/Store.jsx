@@ -1,77 +1,84 @@
-import { useState, useEffect } from "react";
-import Header from "../HeaderAndFooter/Header";
-import Footer from "../HeaderAndFooter/Footer"
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLoaderData, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import Collection from "./Collection";
 import Heading from "../components/Heading/Heading";
 
-
 const Section = styled.section`
-display: grid;
-justify-content: center;
-align-items: center;
-background-color: white;
-color: black;
-height: 692px;
-overflow: hidden;
+
 border-bottom: 1px solid lightgray;
 `;
 
+const ContentWrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 3rem 0;
+gap: 12px;
+`
+
+const Content = styled.div`
+
+`
 const Store = () =>{
-    const [state, setState] = useState({items: [], status: "loading"});
-
-    useEffect(() => {
-      fetch('https://fakestoreapi.com/products', { mode: "cors" })
-        .then((response) => response.json())
-        .then((response) => setState({items: response, status: "loaded"}))
-        .catch((error) => {
-          console.log("error", error);
-          setState({items: [], status: "error"});
-        })
-    }, []);
-
+    const [cart, setCart] = useOutletContext()
+    const data = useLoaderData();
     const men =[];
     const women = [];
     const jewelery = [];
     const electronics = [];
-
-    state.items.forEach((item) =>{
+    data.forEach((item) =>{
         item.category === "men's clothing" ? men.push(item) : 
             item.category === "women's clothing" ? women.push(item) :
             item.category === "electronics" ? electronics.push(item) :
             item.category === "jewelery" ? jewelery.push(item) : false;
     });
 
-  
+    const addHandle = (item, quantity) => {
+        setCart((prevCart) => ({
+                    ...prevCart,
+                    items: [...prevCart.items, { item, quantity }]
+                }))
+             
+    };
+
 
     return(
         <>
-        <Header/>
-
-            <Heading title={"my store"} headingType={"h1"}/>
-            <Section>
-                <Heading title={"Men's collection"} headingType={"h2"}/>
-                <Collection items = {men} status = {status} style={"medium"} link={"store"} />
-        </Section>
-        <Section>
-            <Heading title={"Women's collection"} headingType={"h2"}/>
-
-            <Collection items = {women} status = {status} style ={"medium"} link={"store"} />
-        </Section>
-        <Section>
-            <Heading title={"Jewelry Collection"} headingType={"h2"}/>
-
-            <Collection items = {jewelery} status = {status} style ={"medium"} link={"store"}/>
-        </Section>
-        <Section>
-            <Heading title={"Electronic Collection"} headingType={"h2"}/>
-            <Collection items = {electronics} status = {status} style = {"medium"} link={"store"}/>
-        </Section>
-
-        <Footer/>
-
+            <Content>
+                <Heading title={"my store"} headingType={"h1"}/>
+                <Section>
+                    <ContentWrapper>
+                        <Heading title={"Men's collection"} headingType={"h2"}/>
+                        <Collection items = {men} user={cart} style={"medium"} link={"store"} handle = {addHandle}/>
+                    </ContentWrapper>
+             
+                </Section>
+                <Section>
+                    <ContentWrapper>
+                        <Heading title={"Women's collection"} headingType={"h2"}/>
+                        <Collection items = {women} user={cart} style ={"medium"} link={"store"} handle = {addHandle} />
+                    </ContentWrapper>
         
+                </Section>
+                <Section>
+                    <ContentWrapper>
+                        <Heading title={"Jewelry Collection"} headingType={"h2"}/>
+                        <Collection items = {jewelery} user={cart} style ={"medium"} link={"store"} handle = {addHandle}/>
+                    </ContentWrapper>
+          
+                </Section>
+                <Section>
+                    <ContentWrapper>
+                        <Heading title={"Electronic Collection"} headingType={"h2"}/>
+                        <Collection items = {electronics} user={cart} style = {"medium"} link={"store"} handle = {addHandle}/>
+                    </ContentWrapper>
+  
+                </Section>
+            </Content>
+                   
+    
         </>
     )
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Accordion from "../components/Accordion/Accordion";
 
-const Container = styled.div`
+const Container = styled.footer`
 padding: 3rem 0;
 max-width: 1100px;
 gap: 10px;

@@ -1,27 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useOutletContext } from 'react-router-dom';
 import Loading from './Loading';
-import Header from "../HeaderAndFooter/Header";
-import Footer from "../HeaderAndFooter/Footer";
 import RenderImage from '../components/Image/RenderImage';
 import styled from 'styled-components';
+import Cart from "./Cart";
 
 const Container = styled.div`
 max-width: 1100px;
 padding: 3rem 0;
 margin-inline: auto;
 display: grid;
-
-
 grid-template-columns: 1fr 1fr;
 `
 
 const Wrapper = styled.div`
 `
-const ProductDetail = () =>{
+const ProductDetail = (props) =>{
     const [state, setState] = useState({items: [], status: "loading"});
     const {id} = useParams();
-
 
     useEffect(() => {
       fetch('https://fakestoreapi.com/products', { mode: "cors" })
@@ -34,13 +30,9 @@ const ProductDetail = () =>{
     }, []);
 
     const item = state.items.find((item) => item.id === parseInt(id));
-
-    console.log(item);
-
   
     return(
         <>
-            <Header />
             {state.status === "loading" ? <Loading /> : (
                 <Container>
                     <RenderImage item={item} style={`image-size-${"large"}`} />
@@ -49,14 +41,13 @@ const ProductDetail = () =>{
                         <p>${item.price.toFixed(2)}</p>
                         <p>{item.description}</p>
                         <button>Add to Cart</button>
-                        <Link to="/">go back to store</Link>
+                        <Link to="/store">go back to store</Link>
 
                     </Wrapper>
        
                 </Container>
           
             )}
-            <Footer/>
         </>
     )
 }

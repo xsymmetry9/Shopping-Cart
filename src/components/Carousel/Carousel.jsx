@@ -66,7 +66,8 @@ const RightButton = styled(Button)`
   right: 0;
 `;
 
-const Carousel = ({ items, style }) => {
+const Carousel = (props) => {
+  const {items, style, handle} = props;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrevClick = () => {
@@ -89,9 +90,11 @@ const Carousel = ({ items, style }) => {
         <ListContainer style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}>
           {items.map((item, index) => (
             <List key={index}>
-              <StyledLink to={`/item/${item.id}`}>
-                <Card item={item} style={style} />
-              </StyledLink>
+              {/* <StyledLink to={`/store/${item.id}`}>
+                <Card item={item} style={style} cart = {cart} />
+              </StyledLink> */}
+              <Card item={item} style={style} handle = {handle} />
+
             </List>
           ))}
         </ListContainer>

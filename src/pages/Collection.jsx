@@ -1,17 +1,12 @@
 import React from 'react';
 import Carousel from "../components/Carousel/Carousel";
 
-const PlotMenCollection = (props) =>{
-    const {items, status, style} = props
-
+const PlotCollection = (props) =>{
     return(
         <>
-            <Carousel 
-                items={items} 
-                status ={status} 
-                style={style}/>
+            <Carousel {...props}/>
         </>
     )
 }
 
-export default PlotMenCollection;
+export default PlotCollection;

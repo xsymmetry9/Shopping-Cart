@@ -1,28 +1,25 @@
-import { useEffect, useState } from 'react';
-import Loading from "./pages/Loading";
-import Homepage from './pages/Homepage';
+import { useState } from 'react';
+import Header from "./HeaderAndFooter/Header";
+import Footer from "./HeaderAndFooter/Footer";
+import User from "./pages/User";
+import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
+
+
+const PageWrapper = styled.div`
+display: flex;
+flex-direction: column;
+`;
 
 const App = () => {
-  const [state, setState] = useState({items: [], status: "loading"});
-
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products', { mode: "cors" })
-      .then((response) => response.json())
-      .then((response) => setState({items: response, status: "loaded"}))
-      .catch((error) => {
-        console.log("error", error);
-        setState({items: [], status: "error"});
-      })
-  }, []);
+  const [cart, setCart] = useState(new User("Gary"));
 
   return (
-    <>
-      {state.status === "loading" && <Loading />}
-      {state.status === "error" && <p>Error loading items.</p>}
-      {state.status === "loaded" && (
-        <Homepage {...state}/>
-      )}
-    </>
+    <PageWrapper>
+      <Header numItems = {cart.items.length}/>
+        <Outlet context={[cart, setCart]} />
+      <Footer/>
+    </PageWrapper>
   );
 };
 

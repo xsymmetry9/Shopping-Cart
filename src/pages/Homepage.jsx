@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import Header from "../HeaderAndFooter/Header";
-import Footer from "../HeaderAndFooter/Footer";
+import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import Collection from "./Collection";
 
@@ -54,47 +52,29 @@ border-radius: 980px;
 const CTAWrapper = styled.div`
 margin: 19px;
 `
+const StyledLink = styled(Link)`
+text-decoration: none;
+font-size: 17px;
+color: white;
+background-color: rgb(0, 113, 227);
+padding: 11px 21px;
+text-align: center;
+border-radius: 980px;
 
-const Homepage = (props) =>{
-    const {items, status} = props;
-
-    const men =[];
-    const women = [];
-    const jewelery = [];
-    const electronics = [];
-
-    items.forEach((item) =>{
-        item.category === "men's clothing" ? men.push(item) : 
-            item.category === "women's clothing" ? women.push(item) :
-            item.category === "electronics" ? electronics.push(item) :
-            item.category === "jewelery" ? jewelery.push(item) : false;
-    })
+`
+const Homepage = () =>{
 
     return(
         <>
-        <Header/>
         <Banner>
             <Wrapper>
                 <Heading>Our Collection</Heading>
                 <Paragraph>Beautifully Designed. Carefully made for you.</Paragraph>
                 <CTAWrapper>
-                    <Link to="/store"><Button>Explore more</Button></Link>
+                    <StyledLink to="/store">Explore more</StyledLink>
                 </CTAWrapper>
             </Wrapper>
         </Banner>
-        <Section>
-            <Collection items = {men} status = {status} style={"medium"} />
-        </Section>
-        <Section>
-            <Collection items = {women} status = {status} style ={"medium"} />
-        </Section>
-        <Section>
-            <Collection items = {jewelery} status = {status} style ={"medium"}/>
-        </Section>
-        <Section>
-            <Collection items = {electronics} status = {status} style = {"medium"} />
-        </Section>
-        <Footer />
 
  
 

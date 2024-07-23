@@ -1,14 +1,15 @@
-// import PropTypes from "prop-types";
-// import Style from "./Heading.module.css";
 import styled from "styled-components";
 
 const Title1 = styled.h1`
+    color: black;
     font-size: 3rem;
     text-transform: capitalize;
     text-align: center;
 `;
 const Title2 = styled.h2`
     font-size: 2rem;
+    text-align: center;
+
 `;
 const Title3 = styled.h3`
     font-size: 1.5em;
