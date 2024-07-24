@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import Accordion from "../components/Accordion/Accordion";
 
+const Header = styled.header`
+background-color: rgb(255, 255, 255);
+`;
+
 const Container = styled.footer`
+background-color: inherit;
 padding: 3rem 0;
 max-width: 1100px;
 gap: 10px;
@@ -17,15 +22,16 @@ flex-wrap: wrap;
 const Footer = () =>{
     return(
         <>
-           <Container>
+        <Header>
+            <Container>
                 <Container_menu>
-                <Accordion title = {"My Account"} items = {[
-                    "Membership Program", "Sign In",
-                    "Register",
-                   "Order Status",
-                    "Returns"
-                ]}/>
-                <Accordion title = {"Help"} items = {
+                    <Accordion title = {"My Account"} items = {[
+                        "Membership Program", "Sign In",
+                        "Register",
+                       "Order Status",
+                        "Returns"
+                    ]}/>
+                    <Accordion title = {"Help"} items = {
                     [
                         "Faq",
                         "Accessible Statement",
@@ -37,27 +43,29 @@ const Footer = () =>{
                         "Sizing",
                         "Our Products",
                     ]
-                }/>
-                <Accordion title = {"About Us"} items = {
-                    [
-                        "Our Business",
-                        "Media",
-                        "Investors",
-                        "Strategic Sales",
-                       "Affiliates and Creators",
-                        "Sweat Colective",
-                        "Further"
-                    ]
-                }/>
-                <Accordion title = {"Contact Us"} items = {
-                    [
-                        "Live Chat",
-                        "Email Sign Up",
-                        "Contact Us",
-                    ]
-                }/>
-                </Container_menu>
-            </Container>
+                    }/>
+                    <Accordion title = {"About Us"} items = {
+                        [
+                            "Our Business",
+                            "Media",
+                            "Investors",
+                            "Strategic Sales",
+                           "Affiliates and Creators",
+                            "Sweat Colective",
+                            "Further"
+                        ]
+                    }/>
+                    <Accordion title = {"Contact Us"} items = {
+                        [
+                            "Live Chat",
+                            "Email Sign Up",
+                            "Contact Us",
+                        ]
+                    }/>
+                    </Container_menu>
+                </Container>
+            </Header>
+
         </>
     )
 }

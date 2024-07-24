@@ -1,15 +1,8 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Collection from "./Collection";
+import { useContext } from "react";
+import { ShopContext } from "../App";
 
-const Section = styled.section`
-display: grid;
-justify-content: center;
-align-items: center;
-background-color: white;
-color: black;
-height: 692px;
-`;
 const Banner = styled.section`
 display: grid;
 justify-content: center;
@@ -40,15 +33,7 @@ font-size: 28px;
 margin: 0;
 margin-top: 6px;
 `
-const Button = styled.button`
-background-color: rgb(0, 113, 227);
-color: white;
-padding: 11px 21px;
-font-size: 17px;
-text-align: center;
-border: none;
-border-radius: 980px;
-`
+
 const CTAWrapper = styled.div`
 margin: 19px;
 `
@@ -56,13 +41,19 @@ const StyledLink = styled(Link)`
 text-decoration: none;
 font-size: 17px;
 color: white;
+font-weight: 500;
 background-color: rgb(0, 113, 227);
-padding: 11px 21px;
+padding: 12px 20px;
 text-align: center;
 border-radius: 980px;
+&:hover{
+    background-color:rgba(0, 113, 227, .7)}
 
 `
 const Homepage = () =>{
+    const {products, cart, setCart} = useContext(ShopContext);
+    console.log('This is the products: ' + products.length);
+    console.log('This cart belongs to: ' + cart.name);
 
     return(
         <>

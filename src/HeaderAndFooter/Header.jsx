@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ShopContext } from "../App";
 
 const HeaderWrapper = styled.header`
-background-color: gray;
-color: white;
+background-color: rgb(255, 255, 255);
 `
 const Navigation = styled.nav`
 max-width: 1100px;
@@ -26,8 +27,19 @@ gap: 5px;
 `
 const StyledLink = styled(Link)`
 text-decoration: none;
-color: white;`
-const Header = ({numItems}) =>{
+text-transform: uppercase;
+color: rgb(0, 0, 0);
+padding: 5px 20px;
+font-size: 16px;
+font-weight: 600;
+    &:hover
+    {
+        color: red;
+    }
+`;
+
+const Header = () =>{
+    const {cart} = useContext(ShopContext);
 
     return(
         <>
@@ -35,11 +47,11 @@ const Header = ({numItems}) =>{
                 <Navigation>
                     <StyledLink to= "/"><p>Logo</p></StyledLink>
                     <UnorderedList >
-                        <List><StyledLink to ="/store/women">Women</StyledLink></List>
-                        <List><StyledLink to ="/store/men">Men</StyledLink></List>
-                        <List><StyledLink to ="/store/jewelry">Jewelry</StyledLink></List>
-                        <List><StyledLink to ="/store/electronics">Electronics</StyledLink></List>
-                        <List><StyledLink to="/store/cart">Cart <span>{numItems}</span></StyledLink></List>
+                        <List><StyledLink to ="store/women">Women</StyledLink></List>
+                        <List><StyledLink to ="store/men">Men</StyledLink></List>
+                        <List><StyledLink to ="store/jewelry">Jewelry</StyledLink></List>
+                        <List><StyledLink to ="store/electronics">Electronics</StyledLink></List>
+                        <List><StyledLink to= "store/cart">Cart <span>{cart.items.length}</span></StyledLink></List>
                     </UnorderedList>
                 </Navigation>
             </HeaderWrapper>

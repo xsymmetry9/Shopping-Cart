@@ -44,11 +44,11 @@ const FormContainer = styled.div`
     justify-content: center;
     padding-bottom: 1.8rem;
 `
-const Input = styled.input`
-    width: 30px;
+const Input = styled.input.attrs({type: "number", min: 0, max: 10})`
+    width: 40px;
     height: auto;
     padding: 12px 8px;
-    border: black 1px solid;
+    border: #333 1px solid;
     text-align: center;
     font-size: .9rem;
     font-weight: 400;
